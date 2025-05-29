@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Quality Analyzer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Air Quality Data Analyzer</h1>
+        <p class="lead">Upload your CSV files. Ensure they have a consistent timestamp column and parameter names (e.g., PM2.5, PM10).</p>
+
+        <form id="uploadForm" enctype="multipart/form-data" class="mb-4">
+            <div class="form-group">
+                <label for="files">Choose CSV files:</label>
+                <input type="file" class="form-control-file" id="files" name="files[]" multiple required accept=".csv">
+            </div>
+            <div class="form-group">
+                <label for="timestamp_col">Timestamp Column Name (case-sensitive):</label>
+                <input type="text" class="form-control" id="timestamp_col" name="timestamp_col" value="Timestamp" placeholder="e.g., Timestamp, Date, date_time">
+                 <small class="form-text text-muted">Enter the exact name of the column containing date and time information.</small>
+            </div>
+            <button type="submit" class="btn btn-primary">Process Files</button>
+        </form>
+
+        <div id="loading" style="display:none;">
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <p>Processing data, please wait...</p>
+        </div>
+
+        <div id="errorMessages" class="alert alert-danger" style="display:none;"></div>
+        <div id="warningMessages" class="alert alert-warning" style="display:none;"></div>
+
+        <div id="results" class="mt-4">
+            <!-- Plots will be injected here -->
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

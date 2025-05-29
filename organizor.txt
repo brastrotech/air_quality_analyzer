@@ -1,0 +1,12 @@
+air_quality_analyzer/
+├── app.py
+├── templates/
+│   └── index.html
+├── static/
+│   ├── css/
+│   │   └── style.css
+│   └── js/
+│       └── script.js
+├── uploads/            # Should be empty or non-existent for initial commit
+├── generated_plots/    # Should be empty or non-existent for initial commit
+└── requirements.txt
