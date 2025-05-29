@@ -10,17 +10,15 @@
 <body>
     <div class="container mt-5">
         <h1>Air Quality Data Analyzer</h1>
-        <p class="lead">Upload your CSV files. Ensure they have a consistent timestamp column and parameter names (e.g., PM2.5, PM10).</p>
+        <p class="lead">
+            Upload your CSV files. The application will automatically use the <strong>first column</strong>
+            as the timestamp. Ensure parameter names (e.g., PM2.5, PM10) are consistent.
+        </p>
 
         <form id="uploadForm" enctype="multipart/form-data" class="mb-4">
             <div class="form-group">
                 <label for="files">Choose CSV files:</label>
                 <input type="file" class="form-control-file" id="files" name="files[]" multiple required accept=".csv">
-            </div>
-            <div class="form-group">
-                <label for="timestamp_col">Timestamp Column Name (case-sensitive):</label>
-                <input type="text" class="form-control" id="timestamp_col" name="timestamp_col" value="Timestamp" placeholder="e.g., Timestamp, Date, date_time">
-                 <small class="form-text text-muted">Enter the exact name of the column containing date and time information.</small>
             </div>
             <button type="submit" class="btn btn-primary">Process Files</button>
         </form>
@@ -34,6 +32,19 @@
 
         <div id="errorMessages" class="alert alert-danger" style="display:none;"></div>
         <div id="warningMessages" class="alert alert-warning" style="display:none;"></div>
+        <div id="infoMessages" class="alert alert-info" style="display:none;"></div>
+
+        <div id="downloadLinks" class="my-3" style="display:none;">
+            <h4>Downloads:</h4>
+            <ul class="list-group">
+                <li class="list-group-item" id="downloadCsvLinkContainer" style="display:none;">
+                    <a href="#" id="downloadCsvLink" class="btn btn-success btn-sm" target="_blank">Download Processed Data (CSV)</a>
+                </li>
+                <li class="list-group-item" id="downloadPlotsZipLinkContainer" style="display:none;">
+                    <a href="#" id="downloadPlotsZipLink" class="btn btn-info btn-sm" target="_blank">Download All Plots (ZIP)</a>
+                </li>
+            </ul>
+        </div>
 
         <div id="results" class="mt-4">
             <!-- Plots will be injected here -->
